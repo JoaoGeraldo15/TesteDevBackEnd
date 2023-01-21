@@ -1,5 +1,8 @@
+import java.util.Objects;
 
 public class Usuario {
+
+	private Long id;
 	private String username;
 	private String senha;
 	private Cliente cliente;
@@ -9,8 +12,9 @@ public class Usuario {
 		super();
 	}
 
-	public Usuario(String username, String senha, Cliente cliente, Empresa empresa) {
+	public Usuario(Long id, String username, String senha, Cliente cliente, Empresa empresa) {
 		super();
+		this.id = id;
 		this.username = username;
 		this.senha = senha;
 		this.cliente = cliente;
@@ -21,7 +25,7 @@ public class Usuario {
 		return this.empresa == null && this.cliente == null;
 	}
 
-	public boolean IsEmpresa() {
+	public boolean isEmpresa() {
 		return this.empresa != null;
 	}
 
@@ -31,6 +35,10 @@ public class Usuario {
 
 	public String getUsername() {
 		return username;
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 	public void setUsername(String username) {
@@ -61,4 +69,16 @@ public class Usuario {
 		this.empresa = empresa;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Usuario usuario = (Usuario) o;
+		return id.equals(usuario.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
 }

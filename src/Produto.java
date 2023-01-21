@@ -1,18 +1,17 @@
+import java.math.BigDecimal;
 
 public class Produto {
-	private Integer id;
+	private Long id;
 	private String nome;
 	private Integer quantidade;
-	private Double preco;
-	private Empresa empresa;
+	private BigDecimal preco;
 
-	public Produto(Integer id,String nome, Integer quantidade, Double preco, Empresa empresa) {
+	public Produto(Long id,String nome, Integer quantidade, BigDecimal preco) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.quantidade = quantidade;
 		this.preco = preco;
-		this.empresa = empresa;
 	}
 
 	public Produto() {
@@ -22,20 +21,12 @@ public class Produto {
 	
 	
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
 	}
 
 	public String getNome() {
@@ -54,12 +45,16 @@ public class Produto {
 		this.quantidade = quantidade;
 	}
 
-	public Double getPreco() {
+	public BigDecimal getPreco() {
 		return preco;
 	}
 
-	public void setPreco(Double preco) {
+	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
+	}
+
+	public BigDecimal obterValorTotal() {
+		return this.getPreco().multiply(BigDecimal.valueOf(this.getQuantidade()));
 	}
 
 }

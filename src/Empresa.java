@@ -1,29 +1,36 @@
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class Empresa {
-	private Integer id;
+	private Long id;
 	private String nome;
 	private String cnpj;
 	private Double taxa;
-	private Double saldo;
+	private BigDecimal saldo;
+
+	private List<Produto> produtos = new ArrayList<>();
 
 	public Empresa() {
 		super();
 	}
 
-	public Empresa(Integer id, String nome, String cnpj, Double taxa, Double saldo) {
+	public Empresa(Long id, String nome, String cnpj, Double taxa, BigDecimal saldo, List<Produto> produtos) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cnpj = cnpj;
 		this.taxa = taxa;
 		this.saldo = saldo;
+		this.produtos = produtos;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -51,12 +58,28 @@ public class Empresa {
 		this.taxa = taxa;
 	}
 
-	public Double getSaldo() {
+	public BigDecimal getSaldo() {
 		return saldo;
 	}
 
-	public void setSaldo(Double saldo) {
+	public void setSaldo(BigDecimal saldo) {
 		this.saldo = saldo;
 	}
 
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Empresa empresa = (Empresa) o;
+		return id.equals(empresa.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
 }
